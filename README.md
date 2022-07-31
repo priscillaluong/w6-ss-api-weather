@@ -1,0 +1,1 @@
+# w6-ss-api-weather
