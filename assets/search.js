@@ -1,8 +1,29 @@
 var submitButton = document.querySelector("#search-form");
 var cardEl = document.querySelector("#card-section");
-
+var searchHistoryEl = document.querySelector(".search-history");
+var savedSearch = [];
 // get weather api url using fetch() .then() methods
 
+function saveSearch(lat, lon, name) {
+    var latestSearch = {
+        city: name,
+        latitude: lat,
+        longitude: lon,
+    };
+    savedSearch.push(latestSearch);
+    localStorage.setItem("searches", JSON.stringify(savedSearch));
+    //create new button for search
+    var newBtn = document.createElement("button");
+    newBtn.classList.add('btn', 'btn-light', 'btn-block', 'my-2');
+    newBtn.setAttribute('type', 'button');
+    newBtn.textContent = name;
+    searchHistoryEl.appendChild(newBtn);
+}
+
+function getPreviousSearch (){
+    event.preventDefault();
+
+}
 
 function getFutureForecast (lat, lon) {
     var futureForecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=8d2766b941018d7a3ac5440bf33f1fc2';
@@ -13,6 +34,7 @@ function getFutureForecast (lat, lon) {
     })
     .then(function (data) {
         console.log(data);
+        //clear old search result
         cardEl.innerHTML = "";
         for (var i = 0; i < data.list.length; i++) {
             if (data.list[i].dt_txt.includes("12:00:00")) {
@@ -113,6 +135,7 @@ function getCoordinates(search) {
         
         getApi(lat, lon, name);
         getFutureForecast(lat, lon);
+        saveSearch(lat, lon, name);
       });
   }
 
