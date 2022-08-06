@@ -1,12 +1,25 @@
 var submitButton = document.querySelector("#search-form");
+var cardEl = document.querySelector("#card-section");
 
 // get weather api url using fetch() .then() methods
 
-/* var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=8d2766b941018d7a3ac5440bf33f1fc2';
-var url = 'http://api.openweathermap.org/geo/1.0/direct?q=London&appid=8d2766b941018d7a3ac5440bf33f1fc2';
-console.log(requestUrl);
-console.log(url);
- */
+function getFutureForecast (lat, lon) {
+    var futureForecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&cnt=5&appid=8d2766b941018d7a3ac5440bf33f1fc2';
+    console.log(futureForecastUrl);
+
+    fetch(futureForecastUrl)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+        for (var i = 0; i < data.list.length; i++) {
+            var card = document.createElement('div');
+            card.classList.add('card', 'col', 'mx-2');
+        }
+    })
+
+}
 
 function getApi(lat, lon, name) {
 // TODO: Loop through the data and generate your HTML
@@ -75,6 +88,7 @@ function getCoordinates(search) {
         console.log(lon);
         
         getApi(lat, lon, name);
+        getFutureForecast(lat, lon);
       });
   }
 
