@@ -4,7 +4,7 @@ var cardEl = document.querySelector("#card-section");
 // get weather api url using fetch() .then() methods
 
 function getFutureForecast (lat, lon) {
-    var futureForecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&cnt=5&appid=8d2766b941018d7a3ac5440bf33f1fc2';
+    var futureForecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=8d2766b941018d7a3ac5440bf33f1fc2';
     console.log(futureForecastUrl);
 
     fetch(futureForecastUrl)
@@ -14,8 +14,38 @@ function getFutureForecast (lat, lon) {
     .then(function (data) {
         console.log(data);
         for (var i = 0; i < data.list.length; i++) {
-            var card = document.createElement('div');
-            card.classList.add('card', 'col', 'mx-2');
+            if (data.list[i].dt_txt.includes("12:00:00")) {
+                var card = document.createElement('div');
+                card.classList.add('card', 'col', 'mx-2');
+                cardEl.append(card);
+                // display date result
+                var dateEl = document.createElement('h2');
+                var dateResult = JSON.stringify(new Date(data.list[i].dt * 1000));
+                var futureDate = dateResult.slice(1,11);
+                dateEl.textContent = futureDate;
+                card.append(dateEl);
+                //display temp result
+                var tempEl = document.createElement('p');
+                var tempResult = data.list[i].main.temp;
+                tempEl.textContent = "Temp: " + tempResult;
+                card.append(tempEl);
+                //display wind result
+                var windEl = document.createElement('p');
+                var windResult = data.list[i].wind.speed;
+                windEl.textContent = "Wind: " + windResult;
+                card.append(windEl);
+                //display humidity result
+                var humidityEl = document.createElement('p');
+                var humidityResult = data.list[i].main.humidity;
+                humidityEl.textContent = "Humidity: " + humidityResult;
+                card.append(humidityEl);
+            }
+            //dateEl.textContent = 
+            var futureTempEl = document.createElement('p');
+
+            var futureWindEl = document.createElement('p');
+
+            var futureHumidityEl = document.createElement('p');
         }
     })
 
