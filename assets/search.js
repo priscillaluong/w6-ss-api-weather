@@ -3,16 +3,17 @@ var cardEl = document.querySelector("#card-section");
 
 // get weather api url using fetch() .then() methods
 
+
 function getFutureForecast (lat, lon) {
     var futureForecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=8d2766b941018d7a3ac5440bf33f1fc2';
     console.log(futureForecastUrl);
-
     fetch(futureForecastUrl)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
         console.log(data);
+        cardEl.innerHTML = "";
         for (var i = 0; i < data.list.length; i++) {
             if (data.list[i].dt_txt.includes("12:00:00")) {
                 var card = document.createElement('div');
@@ -25,30 +26,23 @@ function getFutureForecast (lat, lon) {
                 dateEl.textContent = futureDate;
                 card.append(dateEl);
                 //display temp result
-                var tempEl = document.createElement('p');
-                var tempResult = data.list[i].main.temp;
-                tempEl.textContent = "Temp: " + tempResult;
-                card.append(tempEl);
+                var futureTempEl = document.createElement('p');
+                var futureTempResult = data.list[i].main.temp;
+                futureTempEl.textContent = "Temp: " + futureTempResult;
+                card.append(futureTempEl);
                 //display wind result
-                var windEl = document.createElement('p');
-                var windResult = data.list[i].wind.speed;
-                windEl.textContent = "Wind: " + windResult;
-                card.append(windEl);
+                var futureWindEl = document.createElement('p');
+                var futureWindResult = data.list[i].wind.speed;
+                futureWindEl.textContent = "Wind: " + futureWindResult;
+                card.append(futureWindEl);
                 //display humidity result
-                var humidityEl = document.createElement('p');
-                var humidityResult = data.list[i].main.humidity;
-                humidityEl.textContent = "Humidity: " + humidityResult;
-                card.append(humidityEl);
+                var futureHumidityEl = document.createElement('p');
+                var futureHumidityResult = data.list[i].main.humidity;
+                futureHumidityEl.textContent = "Humidity: " + futureHumidityResult;
+                card.append(futureHumidityEl);
             }
-            //dateEl.textContent = 
-            var futureTempEl = document.createElement('p');
-
-            var futureWindEl = document.createElement('p');
-
-            var futureHumidityEl = document.createElement('p');
         }
     })
-
 }
 
 function getApi(lat, lon, name) {
