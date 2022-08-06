@@ -7,6 +7,11 @@ header {
     background-color: blueviolet;
 }
 
+form {
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
+}
+
 #forecast {
     background-color: aquamarine;
 }
