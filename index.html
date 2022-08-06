@@ -24,16 +24,26 @@
     <header>
       <h1 class="display-3">Weather Dashboard</h1>
     </header>
-    <nav class="navbar">
-      <form class="form-inline .d-flex .flex-column">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </nav>
-
+<!--     <form class="form-inline .d-flex .flex-column">
+      <h4>Search for a city:</h4>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
     <div class="container">
-
+      <div class="row">
+        <form id="search-form" class="col-4">
+          <h4>Search for a city:</h4>
+          <input id="search-input" class="form-input mr-sm-2" type="search" placeholder="Search">
+          <button class="btn btn-info btn-block my-2 mr-sm-2" type="submit">Search</button>
+        </form>
+        <div id="forecast" class="col-8">
+          
+        </div>
+      </div>
     </div>
+
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
