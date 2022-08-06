@@ -20,6 +20,8 @@ function getApi(lat, lon, name) {
     .then(function (data) {
         console.log(data);
         var nameDateEl = document.querySelector(".city-name");
+
+        //display city name and date
         var unix_timestamp = data.current.dt;
         console.log(unix_timestamp);
         var date = new Date(unix_timestamp * 1000);
@@ -27,6 +29,27 @@ function getApi(lat, lon, name) {
         var month = date.getMonth() + 1;
         var day = date. getDate();
         nameDateEl.textContent = name + " (" + day + "/" + month + "/" + year + ")";
+
+        //display temp
+        var temp = data.current.temp;
+        var tempEl = document.querySelector(".temp");
+        tempEl.textContent = "Temp: " + temp;
+
+        //display wind
+        var wind = data.current.wind_speed;
+        var windEl = document.querySelector(".wind");
+        windEl.textContent = "Wind: " + wind;
+
+        //display humidity
+        var humidity = data.current.humidity;
+        var humidityEl = document.querySelector(".humidity");
+        humidityEl.textContent = "Humidity: " + humidity;
+
+        //display UVI
+        var uvi = data.current.uvi;
+        var uviEl = document.querySelector(".uv-index");
+        uviEl.textContent = "UV Index: " + uvi;
+
     })
 }
 
