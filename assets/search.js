@@ -1,8 +1,19 @@
 var submitButton = document.querySelector("#search-form");
 var cardEl = document.querySelector("#card-section");
 var searchHistoryEl = document.querySelector(".search-history");
-var savedSearch = [];
+var savedData = JSON.parse(localStorage.getItem("searches")) || [];
+
 // get weather api url using fetch() .then() methods
+
+function init() {
+    for (var i = 0; i < savedData.length; i++) {
+        var newBtn = document.createElement("button");
+        newBtn.classList.add('btn', 'btn-light', 'btn-block', 'my-2');
+        newBtn.setAttribute('type', 'button');
+        newBtn.textContent = savedData[i].city;
+        searchHistoryEl.appendChild(newBtn);
+    }
+}
 
 function saveSearch(lat, lon, name) {
     var latestSearch = {
@@ -10,19 +21,14 @@ function saveSearch(lat, lon, name) {
         latitude: lat,
         longitude: lon,
     };
-    savedSearch.push(latestSearch);
-    localStorage.setItem("searches", JSON.stringify(savedSearch));
+    savedData.push(latestSearch);
+    localStorage.setItem("searches", JSON.stringify(savedData));
     //create new button for search
     var newBtn = document.createElement("button");
     newBtn.classList.add('btn', 'btn-light', 'btn-block', 'my-2');
     newBtn.setAttribute('type', 'button');
     newBtn.textContent = name;
     searchHistoryEl.appendChild(newBtn);
-}
-
-function getPreviousSearch (){
-    event.preventDefault();
-
 }
 
 function getFutureForecast (lat, lon) {
@@ -152,4 +158,16 @@ function searchFormSubmit() {
     getCoordinates(searchInput);
 }
 
+//event listener for dynamic buttons
+searchHistoryEl.addEventListener('click', function(x) {
+    console.log(x.target.nodeName);
+    console.log(x.target);
+    console.log(x.target.textContent);
+    if (x.target.nodeName === "BUTTON") {
+        var savedData = JSON.parse(localStorage.getItem("searches"));
+        console.log(savedData);
+    }
+});
+
 submitButton.addEventListener('submit', searchFormSubmit);
+init();
