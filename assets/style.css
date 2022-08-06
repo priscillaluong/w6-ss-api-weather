@@ -1,3 +1,8 @@
+header {
+    text-align: center;
+    padding: 20px 0px;
+}
+
 #search {
     background-color: blueviolet;
 }
@@ -8,4 +13,12 @@
 
 #current-forecast {
     border: 1px solid black;
+}
+
+#card-section {
+    background-color: cornflowerblue;
+}
+
+.card {
+    background-color: coral;
 }
