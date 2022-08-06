@@ -8,7 +8,7 @@ console.log(requestUrl);
 console.log(url);
  */
 
-function getApi(lat, lon) {
+function getApi(lat, lon, name) {
 // TODO: Loop through the data and generate your HTML
     var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly,daily&appid=8d2766b941018d7a3ac5440bf33f1fc2';
     console.log(requestUrl);
@@ -19,17 +19,15 @@ function getApi(lat, lon) {
     })
     .then(function (data) {
         console.log(data);
-        
+        var nameDateEl = document.querySelector(".city-name");
+        var unix_timestamp = data.current.dt;
+        console.log(unix_timestamp);
+        var date = new Date(unix_timestamp * 1000);
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date. getDate();
+        nameDateEl.textContent = name + " (" + day + "/" + month + "/" + year + ")";
     })
-
-    for (var i = 0; i < data.length; i++) {
-        var login = document.createElement('h3');
-        var url = document.createElement('p');
-        login.textContent = data[i].login;
-        url.textContent = data[i].url;
-        userContainer.append(login);
-        userContainer.append(url);
-    }
 }
 
 function getCoordinates(search) {
@@ -49,10 +47,11 @@ function getCoordinates(search) {
 
         var lat = location[0].lat;
         var lon = location[0].lon;
+        var name = location[0].name;
         console.log(lat);
         console.log(lon);
         
-        getApi(lat, lon);
+        getApi(lat, lon, name);
       });
   }
 
