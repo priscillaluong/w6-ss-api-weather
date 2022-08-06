@@ -31,14 +31,28 @@
     </form> -->
     <div class="container">
       <div class="row">
-        <form id="search-form" class="col-4">
-          <h4>Search for a city:</h4>
-          <input id="search-input" class="form-input mr-sm-2" type="search" placeholder="Search">
-          <button class="btn btn-info btn-block my-2 mr-sm-2" type="submit">Search</button>
-        </form>
-        <div id="forecast" class="col-8">
-          
-        </div>
+        <section id="search" class="col-md-4 col-sm-12">
+          <form id="search-form">
+            <h4>Search for a city:</h4>
+            <input id="search-input" class="w-100" type="search" placeholder="Search">
+            <button class="btn btn-info btn-block my-2" type="submit">Search</button>
+          </form>
+          <div class="search-history">
+
+          </div>
+        </section>
+        <section id="forecast" class="col-md-8 col-sm-12">
+          <div id="current-forecast" class="col"> 
+            <h1 class="city-name">City name and date</h1>
+            <p class="temp">Temp: </p>
+            <p class="wind">Wind: </p>
+            <p class="humidity">Humidity: </p>
+            <p class="uv-index">UV Index: </p>
+          </div>
+          <div id="future-forecast" class="col"> 
+
+          </div>
+        </section>
       </div>
     </div>
 
