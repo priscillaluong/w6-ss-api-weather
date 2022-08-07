@@ -116,7 +116,7 @@ function getApi(lat, lon, name) {
 
         var icon = data.current.weather[0].icon;
         console.log(icon);
-        nameDateEl.innerHTML = name + " (" + day + "/" + month + "/" + year + ') <img src="http://openweathermap.org/img/wn/' + icon + '@2x.png">';
+        nameDateEl.innerHTML = name + " (" + day + "/" + month + "/" + year + ') <img src="https://openweathermap.org/img/wn/' + icon + '@2x.png">';
 
         //display temp
         var temp = data.current.temp;
