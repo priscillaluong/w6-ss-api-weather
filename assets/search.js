@@ -95,7 +95,6 @@ function getFutureForecast (lat, lon) {
 }
 
 function getApi(lat, lon, name) {
-// TODO: Loop through the data and generate your HTML
     var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly,daily&units=metric&appid=8d2766b941018d7a3ac5440bf33f1fc2';
     console.log(requestUrl);
 
