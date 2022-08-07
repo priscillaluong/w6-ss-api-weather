@@ -73,7 +73,7 @@ function getCoordinates(search) {
 
 ## URL to Deployed Application:
 
-[Click here](https://priscillaluong.github.io/w4-timed-quiz/) 
+[Click here](https://priscillaluong.github.io/w6-ss-api-weather/) 
 
 ### Final note:
 
