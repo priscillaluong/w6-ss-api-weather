@@ -22,24 +22,6 @@ function saveSearch(lat, lon, name) {
         longitude: lon,
     };
 
-/*     console.log(savedData);
-    console.log(latestSearch);
-    console.log(savedData.indexOf(latestSearch));
-    //savedData = JSON.parse(localStorage.getItem("searches"));
-    if (savedData.indexOf(latestSearch) === -1) {
-        savedData.push(latestSearch);
-        localStorage.setItem("searches", JSON.stringify(savedData));
-        //create new button for search
-        var newBtn = document.createElement("button");
-        newBtn.classList.add('btn', 'btn-light', 'btn-block', 'my-2');
-        newBtn.setAttribute('type', 'button');
-        newBtn.textContent = name;
-        searchHistoryEl.appendChild(newBtn);
-    } else {
-        return;
-    } */
-    console.log(latestSearch);
-    console.log(savedData.length);
     var insertNew = true;
 
     for (var i = 0; i < savedData.length; i++) {
@@ -51,6 +33,7 @@ function saveSearch(lat, lon, name) {
             continue;
         }
     }
+
     if (insertNew === true) {
         console.log(latestSearch.city);
         savedData.push(latestSearch);
@@ -62,17 +45,6 @@ function saveSearch(lat, lon, name) {
         newBtn.textContent = name;
         searchHistoryEl.appendChild(newBtn);
     }
-
-/*     if (savedData.length === 0) {
-        savedData.push(latestSearch);
-        localStorage.setItem("searches", JSON.stringify(savedData));
-        //create new button for search
-        var newBtn = document.createElement("button");
-        newBtn.classList.add('btn', 'btn-light', 'btn-block', 'my-2');
-        newBtn.setAttribute('type', 'button');
-        newBtn.textContent = name;
-        searchHistoryEl.appendChild(newBtn);
-    } */
 }
 
 function getFutureForecast (lat, lon) {
@@ -147,17 +119,34 @@ function getApi(lat, lon, name) {
         //display wind
         var wind = data.current.wind_speed;
         var windEl = document.querySelector(".wind");
-        windEl.textContent = "Wind: " + wind;
+        windEl.textContent = "Wind: " + wind + " MPH";
 
         //display humidity
         var humidity = data.current.humidity;
         var humidityEl = document.querySelector(".humidity");
-        humidityEl.textContent = "Humidity: " + humidity;
+        humidityEl.textContent = "Humidity: " + humidity + " %";
 
         //display UVI
         var uvi = data.current.uvi;
         var uviEl = document.querySelector(".uv-index");
-        uviEl.textContent = "UV Index: " + uvi;
+        uviEl.innerHTML = "UV Index:  <span>" + uvi + "</span>";
+        // change UVI background color depending on figure
+        var span = document.querySelector("span");
+        if (uvi <= 2) {
+            span.style.backgroundColor = '#9cde57';
+        } else if (uvi => 3 || uvi <= 5) {
+            span.style.backgroundColor = '#f0d351';
+        } else if (uvi => 6 || uvi <= 7) {
+            span.style.backgroundColor = '#f29f4b';
+        } else if (uvi => 8 || uvi <= 10) {
+            span.style.backgroundColor = '#ed3e1f';
+            span.style.color = 'white';
+        } else {
+            span.style.backgroundColor = '#cc06b8';
+            span.style.color = 'white';
+        }
+        
+        
 
     })
 }
