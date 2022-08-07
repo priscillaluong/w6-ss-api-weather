@@ -23,23 +23,38 @@
 
   <body>
     <header>
-      <h1 class="display-3">Weather Dashboard</h1>
+      <h1 class="display-4">Weather Dashboard</h1>
     </header>
     <div class="container-fluid">
-      <div class="row justify-content-center">
+      <div class="row">
         <section id="search" class="col-md-4 col-sm-12">
           <form id="search-form">
             <h4>Search for a city:</h4>
             <input id="search-input" class="w-100" type="search" placeholder="Search">
             <button class="btn btn-info btn-block my-2" type="submit">Search</button>
           </form>
-          <div class="search-history  my-4">
+          <div class="search-history my-4">
           </div>
+        </section>
+        <section id="forecast" class="col-md-8 col-sm-12">
+          <div id="current-forecast" class="col"> 
+            <h1 class="city-name">---</h1>
+            <p class="temp">Temp: </p>
+            <p class="wind">Wind: </p>
+            <p class="humidity">Humidity: </p>
+            <p class="uv-index">UV Index: </p>
+          </div>
+          <div id="future-forecast" class="col"> 
+            <h1>5-Day forecast:</h1>
+            <div id="card-section" class="row">
+            </div>
+          </div>
+        </section>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="./assets/script.js"></script>
+    <script src="./assets/search.js"></script>
   </body>
 </html>
