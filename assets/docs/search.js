@@ -72,7 +72,7 @@ function getFutureForecast (lat, lon) {
                 //display icon 
                 var img = document.createElement('img');
                 var futureIcon = data.list[i].weather[0].icon;
-                img.setAttribute('src', 'http://openweathermap.org/img/wn/' + futureIcon + '@2x.png');
+                img.setAttribute('src', 'https://openweathermap.org/img/wn/' + futureIcon + '@2x.png');
                 card.append(img);
                 //display temp result
                 var futureTempEl = document.createElement('p');
