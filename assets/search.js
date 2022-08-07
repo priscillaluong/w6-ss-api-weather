@@ -61,10 +61,10 @@ function getFutureForecast (lat, lon) {
         for (var i = 0; i < data.list.length; i++) {
             if (data.list[i].dt_txt.includes("12:00:00")) {
                 var card = document.createElement('div');
-                card.classList.add('card', 'col', 'mx-2');
+                card.classList.add('card', 'col', 'mx-1');
                 cardEl.append(card);
                 // display date result
-                var dateEl = document.createElement('h3');
+                var dateEl = document.createElement('h4');
                 var dateResult = JSON.stringify(new Date(data.list[i].dt * 1000));
                 var futureDate = dateResult.slice(1,11);
                 dateEl.textContent = futureDate;
@@ -181,9 +181,6 @@ function getCoordinates(search) {
         getApi(lat, lon, name);
         getFutureForecast(lat, lon);
         saveSearch(lat, lon, name);
-
-        //check if city is already saved
-
       });
   }
 
