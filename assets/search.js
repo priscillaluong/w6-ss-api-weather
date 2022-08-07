@@ -21,14 +21,58 @@ function saveSearch(lat, lon, name) {
         latitude: lat,
         longitude: lon,
     };
-    savedData.push(latestSearch);
-    localStorage.setItem("searches", JSON.stringify(savedData));
-    //create new button for search
-    var newBtn = document.createElement("button");
-    newBtn.classList.add('btn', 'btn-light', 'btn-block', 'my-2');
-    newBtn.setAttribute('type', 'button');
-    newBtn.textContent = name;
-    searchHistoryEl.appendChild(newBtn);
+
+/*     console.log(savedData);
+    console.log(latestSearch);
+    console.log(savedData.indexOf(latestSearch));
+    //savedData = JSON.parse(localStorage.getItem("searches"));
+    if (savedData.indexOf(latestSearch) === -1) {
+        savedData.push(latestSearch);
+        localStorage.setItem("searches", JSON.stringify(savedData));
+        //create new button for search
+        var newBtn = document.createElement("button");
+        newBtn.classList.add('btn', 'btn-light', 'btn-block', 'my-2');
+        newBtn.setAttribute('type', 'button');
+        newBtn.textContent = name;
+        searchHistoryEl.appendChild(newBtn);
+    } else {
+        return;
+    } */
+    console.log(latestSearch);
+    console.log(savedData.length);
+    var insertNew = true;
+
+    for (var i = 0; i < savedData.length; i++) {
+        console.log(savedData);
+        if (savedData[i].city === name) {
+            insertNew = false;
+            return;
+        } else {
+            continue;
+        }
+    }
+    if (insertNew === true) {
+        console.log(latestSearch.city);
+        savedData.push(latestSearch);
+        localStorage.setItem("searches", JSON.stringify(savedData));
+        //create new button for search
+        var newBtn = document.createElement("button");
+        newBtn.classList.add('btn', 'btn-light', 'btn-block', 'my-2');
+        newBtn.setAttribute('type', 'button');
+        newBtn.textContent = name;
+        searchHistoryEl.appendChild(newBtn);
+    }
+
+/*     if (savedData.length === 0) {
+        savedData.push(latestSearch);
+        localStorage.setItem("searches", JSON.stringify(savedData));
+        //create new button for search
+        var newBtn = document.createElement("button");
+        newBtn.classList.add('btn', 'btn-light', 'btn-block', 'my-2');
+        newBtn.setAttribute('type', 'button');
+        newBtn.textContent = name;
+        searchHistoryEl.appendChild(newBtn);
+    } */
 }
 
 function getFutureForecast (lat, lon) {
@@ -144,20 +188,12 @@ function getCoordinates(search) {
         saveSearch(lat, lon, name);
 
         //check if city is already saved
-/*         for (var i = 0; i < savedData.length; i++) {
-            console.log(savedData);
-            if (savedData[i].city === name) {
-                return;
-            } else {
-                console.log("do this");
-                saveSearch(lat, lon, name);
-            }
-        }*/
+
       });
   }
 
-function searchFormSubmit() {
-    event.preventDefault();
+function searchFormSubmit(e) {
+    e.preventDefault();
 
     var searchInput = document.querySelector("#search-input").value;
 
