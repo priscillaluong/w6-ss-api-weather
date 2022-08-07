@@ -142,6 +142,17 @@ function getCoordinates(search) {
         getApi(lat, lon, name);
         getFutureForecast(lat, lon);
         saveSearch(lat, lon, name);
+
+        //check if city is already saved
+/*         for (var i = 0; i < savedData.length; i++) {
+            console.log(savedData);
+            if (savedData[i].city === name) {
+                return;
+            } else {
+                console.log("do this");
+                saveSearch(lat, lon, name);
+            }
+        }*/
       });
   }
 
@@ -164,8 +175,8 @@ searchHistoryEl.addEventListener('click', function(x) {
     console.log(x.target);
     console.log(x.target.textContent);
     if (x.target.nodeName === "BUTTON") {
-        var savedData = JSON.parse(localStorage.getItem("searches"));
         console.log(savedData);
+        getCoordinates(x.target.textContent);
     }
 });
 
