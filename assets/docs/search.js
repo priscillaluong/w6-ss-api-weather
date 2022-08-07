@@ -157,7 +157,7 @@ function getApi(lat, lon, name) {
 }
 
 function getCoordinates(search) {
-    var coordinates = 'http://api.openweathermap.org/geo/1.0/direct?q=' + search + '&appid=8d2766b941018d7a3ac5440bf33f1fc2';
+    var coordinates = 'https://api.openweathermap.org/geo/1.0/direct?q=' + search + '&appid=8d2766b941018d7a3ac5440bf33f1fc2';
     console.log(coordinates);
 
     fetch(coordinates)
