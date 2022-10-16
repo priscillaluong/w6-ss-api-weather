@@ -1,8 +1,6 @@
 # w6-ss-api-weather
 
-Week Six Challenge of the *UOB Full Stack Development Coding Bootcamp* requires students to use Server-Side APIs and local storage to create a **Weather Dashboard** that displays current and future weather. 
-
-We were given a User Story and an Acceptance Criteria as per below:
+An application that uses Server-Side APIs and local storage to create a **Weather Dashboard** that displays current and future weather. 
 
 User Story:
 
